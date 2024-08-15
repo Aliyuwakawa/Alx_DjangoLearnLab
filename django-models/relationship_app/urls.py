@@ -25,17 +25,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('admin/', views.admin_view, name='admin_view'),
-    path('librarian/', views.librarian_view, name='librarian_view'),
-    path('member/', views.member_view, name='member_view'),
-]
+    # URL pattern for adding a book
+    path('add_book/', views.add_book, name='add_book'),
 
+    # URL pattern for editing a book
+    path('edit_book/<int:pk>/', views.edit_book, name='edit_book'),
 
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('books/add/', views.add_book, name='add_book'),
-    path('books/<int:pk>/edit/', views.edit_book, name='edit_book'),
-    path('books/<int:pk>/delete/', views.delete_book, name='delete_book'),
+    # URL pattern for deleting a book
+    path('delete_book/<int:pk>/', views.delete_book, name='delete_book'),
 ]
