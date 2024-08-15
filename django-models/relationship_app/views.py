@@ -15,23 +15,30 @@ class LibraryDetailView(DetailView):
 
 
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.views import LoginView, LogoutView
 
-# Login View
-def login_view(request):
+# Login View using Django's built-in LoginView
+class CustomLoginView(LoginView):
+    template_name = 'relationship_app/login.html'
+
+# Logout View using Django's built-in LogoutView
+class CustomLogoutView(LogoutView):
+    template_name = 'relationship_app/logout.html'
+
+# Registration View
+def register_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')  # Redirect to a home page or another page
+            user = form.save()
+            login(request, user)
+            return redirect('home')  # Redirect to the home page after registration
     else:
-        form = AuthenticationForm()
-    return render(request, 'relationship_app/login.html', {'form': form})
+        form = UserCreationForm()
+    return render(request, 'relationship_app/register.html', {'form': form})
+
 
 # Logout View
 def logout_view(request):
