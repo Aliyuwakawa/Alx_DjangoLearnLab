@@ -16,7 +16,7 @@ class LibraryDetailView(DetailView):
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 
 # Login View using Django's built-in LoginView
