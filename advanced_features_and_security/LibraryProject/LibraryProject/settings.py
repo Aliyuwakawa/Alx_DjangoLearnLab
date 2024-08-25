@@ -161,3 +161,8 @@ SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent the browser from guessing the MIME
 
 # Protect against clickjacking
 X_FRAME_OPTIONS = 'DENY'
+
+# Use this setting if your Django app is behind a proxy/load balancer
+# This setting tells Django to trust the X-Forwarded-Proto header from the proxy to determine if the request is secure
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
