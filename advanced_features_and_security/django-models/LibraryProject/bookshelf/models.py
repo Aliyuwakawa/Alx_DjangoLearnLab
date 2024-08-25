@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
 # Create your models here.
@@ -9,9 +10,6 @@ class Book(models.Model):
     def __str__(self):
         return f"{self.title} by {self.author}"
     
-
-from django.contrib.auth.models import AbstractUser, BaseUserManager
-from django.db import models
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, date_of_birth, password=None, **extra_fields):
