@@ -143,3 +143,21 @@ SESSION_COOKIE_HTTPONLY = True
 
 SECURE_SSL_REDIRECT = True
 
+# Redirect all HTTP requests to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# HTTP Strict Transport Security (HSTS) settings
+SECURE_HSTS_SECONDS = 31536000  # Instruct browsers to only use HTTPS for the next year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True  # Allow preloading of the HSTS policy
+
+# Ensure cookies are only sent over HTTPS
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Set up secure browser headers
+SECURE_BROWSER_XSS_FILTER = True  # Enable the browser's XSS filter
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent the browser from guessing the MIME type
+
+# Protect against clickjacking
+X_FRAME_OPTIONS = 'DENY'
