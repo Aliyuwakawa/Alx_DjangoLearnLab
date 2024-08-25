@@ -129,40 +129,16 @@ AUTH_USER_MODEL = 'bookshelf.CustomUser'
 
 DEBUG = False
 
+# Security settings to enforce HTTPS and secure cookies
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
-
-X_FRAME_OPTIONS = 'DENY'
-
 SECURE_CONTENT_TYPE_NOSNIFF = True
-
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-
-CSRF_COOKIE_HTTPONLY = True
-SESSION_COOKIE_HTTPONLY = True
-
-SECURE_SSL_REDIRECT = True
-
-# Redirect all HTTP requests to HTTPS
-SECURE_SSL_REDIRECT = True
-
-# HTTP Strict Transport Security (HSTS) settings
-SECURE_HSTS_SECONDS = 31536000  # Instruct browsers to only use HTTPS for the next year
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
-SECURE_HSTS_PRELOAD = True  # Allow preloading of the HSTS policy
-
-# Ensure cookies are only sent over HTTPS
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-
-# Set up secure browser headers
-SECURE_BROWSER_XSS_FILTER = True  # Enable the browser's XSS filter
-SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent the browser from guessing the MIME type
-
-# Protect against clickjacking
 X_FRAME_OPTIONS = 'DENY'
 
-# Use this setting if your Django app is behind a proxy/load balancer
-# This setting tells Django to trust the X-Forwarded-Proto header from the proxy to determine if the request is secure
+# This setting is used when your Django application is behind a proxy
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
