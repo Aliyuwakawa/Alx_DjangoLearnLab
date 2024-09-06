@@ -1,9 +1,6 @@
 from rest_framework import serializers
 from .models import Author, Book
 
-# BookSerializer serializes the Book model fields and ensures the publication year is valid.
-# AuthorSerializer nests the BookSerializer to serialize all books related to an author.
-
 
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
