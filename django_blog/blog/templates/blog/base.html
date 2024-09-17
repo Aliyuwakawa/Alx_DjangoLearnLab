@@ -31,3 +31,8 @@
     <script src="{% static 'js/scripts.js' %}"></script>
 </body>
 </html>
+
+<form method="GET" action="{% url 'post_search' %}">
+    <input type="text" name="q" placeholder="Search...">
+    <button type="submit">Search</button>
+</form>

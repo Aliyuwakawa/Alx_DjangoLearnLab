@@ -31,5 +31,19 @@ urlpatterns = [
     path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment-delete'),
 ]
 
+from django.urls import path
+from .views import post_search
+
+urlpatterns = [
+    # Other post-related URLs
+
+    # URL for searching posts
+    path('search/', post_search, name='post_search'),
+
+    # URL for viewing posts by tag
+    path('tags/<slug:tag>/', PostsByTagView.as_view(), name='posts_by_tag'),
+]
+
+
 
 
