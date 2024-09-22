@@ -18,28 +18,21 @@ class ProfileView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         return self.request.user
     
-from rest_framework import status
-from rest_framework.response import Response
+    from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
-from django.shortcuts import get_object_or_404
 from .models import CustomUser
+from .serializers import CustomUserSerializer
 
-class FollowUserView(APIView):
+# Example for Profile View using GenericAPIView and IsAuthenticated
+class ProfileView(generics.GenericAPIView):
+    queryset = CustomUser.objects.all()  # This will retrieve all CustomUser records
+    serializer_class = CustomUserSerializer
     permission_classes = [IsAuthenticated]
 
-    def post(self, request, user_id):
-        user_to_follow = get_object_or_404(CustomUser, id=user_id)
-        request.user.following.add(user_to_follow)
-        return Response({'status': 'followed'}, status=status.HTTP_200_OK)
-
-class UnfollowUserView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def post(self, request, user_id):
-        user_to_unfollow = get_object_or_404(CustomUser, id=user_id)
-        request.user.following.remove(user_to_unfollow)
-        return Response({'status': 'unfollowed'}, status=status.HTTP_200_OK)
+    def get(self, request, *args, **kwargs):
+        user = self.request.user
+        serializer = self.get_serializer(user)
+        return Response(serializer.data)
 
     
 
