@@ -18,10 +18,13 @@ class ProfileView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         return self.request.user
     
-    from rest_framework import generics
+from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from .models import CustomUser
 from .serializers import CustomUserSerializer
+
+
 
 # Example for Profile View using GenericAPIView and IsAuthenticated
 class ProfileView(generics.GenericAPIView):
